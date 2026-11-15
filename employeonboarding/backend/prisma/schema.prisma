@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.NVarChar(50)
+  email      String   @unique @db.NVarChar(100)
+  password   String   @db.NVarChar(100)
+  role       String   @default("user") @db.NVarChar(10)
+  isApproved Boolean  @default(false)
+  createdAt  DateTime @default(now())
+}
+
+model Employee {
+  id             Int             @id @default(autoincrement())
+  name           String          @db.NVarChar(50)
+  email          String          @unique @db.NVarChar(100)
+  mobile         String          @db.NVarChar(10)
+  dob            DateTime        @db.Date
+  department     String          @db.NVarChar(50)
+  designation    String          @db.NVarChar(50)
+  joiningDate    DateTime        @db.Date
+  address        String          @db.NVarChar(250)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  qualifications Qualification[]
+  experiences    Experience[]
+  documents      Document[]
+}
+
+model Qualification {
+  id            Int      @id @default(autoincrement())
+  qualification String   @db.NVarChar(100)
+  university    String   @db.NVarChar(100)
+  yearOfPassing Int
+  score         Float
+  employeeId    Int
+  employee      Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+}
+
+model Experience {
+  id          Int        @id @default(autoincrement())
+  company     String     @db.NVarChar(100)
+  designation String     @db.NVarChar(50)
+  fromDate    DateTime   @db.Date
+  toDate      DateTime   @db.Date
+  employeeId  Int
+  employee    Employee   @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  documents   Document[]
+}
+
+// type can be photo, resume or certificate
+model Document {
+  id           Int         @id @default(autoincrement())
+  type         String      @db.NVarChar(20)
+  originalName String      @db.NVarChar(255)
+  storedName   String      @db.NVarChar(100)
+  mimeType     String      @db.NVarChar(100)
+  size         Int
+  uploadedAt   DateTime    @default(now())
+  employeeId   Int
+  employee     Employee    @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  experienceId Int?
+  experience   Experience? @relation(fields: [experienceId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}

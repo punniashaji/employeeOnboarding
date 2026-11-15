@@ -1,0 +1,64 @@
+body {
+  background-color: #f4f6fb;
+}
+
+.app-navbar {
+  background-color: #1f2a44;
+}
+
+.btn-primary {
+  --bs-btn-bg: #3b5bdb;
+  --bs-btn-border-color: #3b5bdb;
+  --bs-btn-hover-bg: #2f4ac0;
+  --bs-btn-hover-border-color: #2f4ac0;
+  --bs-btn-active-bg: #2f4ac0;
+  --bs-btn-disabled-bg: #3b5bdb;
+  --bs-btn-disabled-border-color: #3b5bdb;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #3b5bdb;
+  --bs-btn-border-color: #3b5bdb;
+  --bs-btn-hover-bg: #3b5bdb;
+  --bs-btn-hover-border-color: #3b5bdb;
+  --bs-btn-active-bg: #3b5bdb;
+  --bs-btn-active-border-color: #3b5bdb;
+}
+
+a {
+  color: #3b5bdb;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.auth-card {
+  max-width: 400px;
+  margin: 80px auto;
+}
+
+.table th {
+  background-color: #eef1f8;
+  font-weight: 600;
+}
+
+th.sort {
+  cursor: pointer;
+}
+
+.photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+  background-color: #eef1f8;
+}
+
+.section-title {
+  color: #1f2a44;
+  border-bottom: 1px solid #e3e7f0;
+  padding-bottom: 6px;
+  margin: 24px 0 16px;
+}
